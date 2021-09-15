@@ -2,7 +2,7 @@
 
 namespace GroceryStoreAPI.Models
 {
-    public class CustomerViewModel
+    public class CustomerDTO
     {
         [Required]
         public string name { get; set; }

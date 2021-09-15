@@ -90,7 +90,7 @@ namespace GroceryStoreAPI.Controllers
         /// <response code="201">The customer was added</response>
         [HttpPut]
         [ProducesResponseType(typeof(Customer), (int)HttpStatusCode.Created)]
-        public async Task<ActionResult> AddCustomer(CustomerViewModel newCustomer)
+        public async Task<ActionResult> AddCustomer(CustomerDTO newCustomer)
         {
             var CheckForDuplicate = await repository.FindByName(newCustomer.name);
             if (CheckForDuplicate != null)
