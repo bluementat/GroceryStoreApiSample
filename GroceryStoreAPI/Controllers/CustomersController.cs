@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Controllers
 {
-    [Route("GroceryStore/v1/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     [Produces("application/json")]
     public class CustomersController : ControllerBase
@@ -31,12 +31,12 @@ namespace GroceryStoreAPI.Controllers
         /// <remarks>
         /// Sample request:
         ///
-        ///     GET /v1/customers/getall        
+        ///     GET api/v1/customers        
         ///
         /// </remarks>        
         /// <returns>Returns a list of all customers</returns>
         /// <response code="200">Returns a list of all customers</response>        
-        [HttpGet("GetAll")]
+        [HttpGet]
         [ProducesResponseType(typeof(List<Customer>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> GetAllCustomers()
         {
@@ -52,7 +52,7 @@ namespace GroceryStoreAPI.Controllers
         /// <remarks>
         /// Sample request:
         ///
-        ///     GET /v1/customers/[id]        
+        ///     GET api/v1/customers/[id]        
         ///
         /// </remarks>        
         /// <returns>A customer</returns>
@@ -79,7 +79,7 @@ namespace GroceryStoreAPI.Controllers
         /// <remarks>
         /// Sample request:
         ///
-        ///     PUT /v1/customers
+        ///     PUT api/v1/customers
         ///     {        
         ///         "name": "CustomerName"
         ///     }
@@ -113,7 +113,7 @@ namespace GroceryStoreAPI.Controllers
         /// <remarks>
         /// Sample request:
         ///
-        ///     POST /v1/customers
+        ///     POST api/v1/customers
         ///     {        
         ///         "id": "1"
         ///         "name": "CustomerName"
@@ -152,7 +152,7 @@ namespace GroceryStoreAPI.Controllers
         /// <remarks>
         /// Sample request:
         ///
-        ///     DELETE /v1/customers/[id]
+        ///     DELETE api/v1/customers/[id]
         ///
         /// </remarks>              
         /// <response code="204">The customer has been deleted</response>        
