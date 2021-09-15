@@ -1,5 +1,6 @@
 ﻿using GroceryStoreAPI.DataAccess;
 using GroceryStoreAPI.Models;
+using GroceryStoreAPI.Security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -10,8 +11,9 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Controllers
 {
+    [Authentication]
     [ApiController]
-    [Route("api/v1/[controller]")]    
+    [Route("api/v1/[controller]")]
     [Produces("application/json")]
     public class CustomersController : ControllerBase
     {
@@ -57,7 +59,7 @@ namespace GroceryStoreAPI.Controllers
         /// </remarks>        
         /// <returns>A customer</returns>
         /// <response code="200">Returns a customer with the ID = id</response>
-        /// <response code="404">If the customer is not found</response>   
+        /// <response code="404">If the customer is not found</response>           
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Customer), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> GetCustomer(int id)
@@ -145,7 +147,7 @@ namespace GroceryStoreAPI.Controllers
             }
         }
 
-        
+
         /// <summary>
         /// Delete a customer
         /// </summary>

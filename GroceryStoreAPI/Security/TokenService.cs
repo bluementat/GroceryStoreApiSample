@@ -1,23 +1,20 @@
 ﻿using GroceryStoreAPI.Models;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace GroceryStoreAPI.DataAccess
+namespace GroceryStoreAPI.Security
 {
     public class TokenService : ITokenService
     {
-        private const double EXPIRY_DURATION_MINUTES = 10;
+        private const double EXPIRY_DURATION_MINUTES = 2;
 
         public string BuildToken(string key, string issuer, ApiUserDTO user)
         {
             var claims = new[] {
-            new Claim(ClaimTypes.Name, user.Name),            
+            new Claim(ClaimTypes.Name, user.Name),
             new Claim(ClaimTypes.NameIdentifier,
             Guid.NewGuid().ToString())
         };

@@ -73,7 +73,7 @@ namespace GroceryStoreAPI.DataAccess
 
 
         private bool ReadInData(out GroceryStoreDataBaseInMemory Db)
-        {           
+        {
             try
             {
                 string DatabaseAsJson = File.ReadAllText(configuration["DatabaseFile"]);

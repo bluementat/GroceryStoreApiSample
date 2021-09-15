@@ -1,13 +1,9 @@
 ﻿using GroceryStoreAPI.DataAccess;
 using GroceryStoreAPI.Models;
+using GroceryStoreAPI.Security;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Controllers
 {
@@ -20,10 +16,10 @@ namespace GroceryStoreAPI.Controllers
         private readonly ITokenService tokenService;
         private string generatedToken = null;
 
-        public AuthenticateController(IConfiguration Config, ITokenService TokenService, IUserRepository UserRepository)
+        public AuthenticateController(IConfiguration Config, ITokenService ApiTokenService, IUserRepository UserRepository)
         {
             config = Config;
-            tokenService = TokenService;
+            tokenService = ApiTokenService;
             repository = UserRepository;
         }
 

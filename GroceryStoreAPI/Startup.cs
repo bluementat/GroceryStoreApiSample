@@ -1,4 +1,5 @@
 using GroceryStoreAPI.DataAccess;
+using GroceryStoreAPI.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,6 +48,7 @@ namespace GroceryStoreAPI
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
+                c.OperationFilter<AuthHeaderFilter>();
             });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
@@ -82,7 +84,7 @@ namespace GroceryStoreAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GroceryStoreAPI v1"));
             }
-            
+
             app.Use(async (context, next) =>
             {
                 var token = context.Request.Headers["Token"].ToString();
