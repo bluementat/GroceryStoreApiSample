@@ -1,12 +1,7 @@
 # Overview
-A sample solution for a Grocery Store API developed from a skeleton Visual Studio Solution. The API uses a repository to abstract an in memory database.
+This repository contains a very simple sample of a Grocery Store API Solution. At this time, the API only provides endpoints for access to Customer data which only contains ID's and Names. THis data is provided through an in-memory database abstract with a repository. For later development, an IGroceryStoreRepository interface is provided to allow other data sources as well as an expansion of the data provided.
 
-# Specifications
- - API listing all customers
- - API retrieving a customer
- - API adding a customer
- - API updating a customer
- - API deleting a customer
- - Unit tests
- - Use .NET Core 3.1 or NET 5+
+## Technologies
+- .NET 5
+- XUnit
 
