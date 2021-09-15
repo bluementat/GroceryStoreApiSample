@@ -1,14 +1,17 @@
 using GroceryStoreAPI.DataAccess;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Text;
 
 namespace GroceryStoreAPI
 {
@@ -25,6 +28,7 @@ namespace GroceryStoreAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -45,6 +49,25 @@ namespace GroceryStoreAPI
                 c.IncludeXmlComments(xmlPath);
             });
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new
+                    SymmetricSecurityKey
+                    (Encoding.UTF8.GetBytes
+                    (Configuration["Jwt:Key"]))
+                };
+            });
+
+            services.AddTransient<IUserRepository, UserRepositoryInMemory>();
+            services.AddTransient<ITokenService, TokenService>();
             services.AddSingleton<IGroceryStoreRepository>(x =>
                new GroceryStoreRepoInMemory(x.GetRequiredService<IConfiguration>(), x.GetRequiredService<ILogger<GroceryStoreRepoInMemory>>()));
 
@@ -59,6 +82,16 @@ namespace GroceryStoreAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GroceryStoreAPI v1"));
             }
+            
+            app.Use(async (context, next) =>
+            {
+                var token = context.Request.Headers["Token"].ToString();
+                if (!string.IsNullOrEmpty(token))
+                {
+                    context.Request.Headers.Add("Authorization", "Bearer " + token);
+                }
+                await next();
+            });
 
             app.UseHttpsRedirection();
 
