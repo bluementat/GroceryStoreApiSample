@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroceryStoreAPI", "GroceryStoreAPI\GroceryStoreAPI.csproj", "{5AD12FE0-F57B-4549-8DC3-A8BDAE56A26B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryStoreAPI.Tests", "GroceryStoreAPI.Tests\GroceryStoreAPI.Tests.csproj", "{DDEF8256-4815-4B34-AE3E-CC903EE93220}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5AD12FE0-F57B-4549-8DC3-A8BDAE56A26B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AD12FE0-F57B-4549-8DC3-A8BDAE56A26B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AD12FE0-F57B-4549-8DC3-A8BDAE56A26B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AD12FE0-F57B-4549-8DC3-A8BDAE56A26B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDEF8256-4815-4B34-AE3E-CC903EE93220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDEF8256-4815-4B34-AE3E-CC903EE93220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDEF8256-4815-4B34-AE3E-CC903EE93220}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDEF8256-4815-4B34-AE3E-CC903EE93220}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EAF21A08-B012-4C96-85DB-A3D41383631C}
+	EndGlobalSection
+EndGlobal
